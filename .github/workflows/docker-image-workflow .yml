@@ -24,14 +24,18 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
-      # Step 4: Build and push Docker image
+      # Step 4: Set environment variable for DockerHub Username
+      - name: Set DockerHub Username as environment variable
+        run: echo "DOCKERHUB_USERNAME=${{ secrets.DOCKERHUB_USERNAME }}" >> $GITHUB_ENV
+
+      # Step 5: Build and push Docker image
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
           context: ./kol2022-g2-updated
           push: true
-          tags: marce35/kiii-final-project:latest
+          tags: ${{ env.DOCKERHUB_USERNAME }}/kiii-final-project:latest
 
-      # Step 5: Cleanup Docker resources
+      # Step 6: Cleanup Docker resources
       - name: Cleanup Docker
         run: docker system prune -f
