@@ -28,7 +28,7 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:
-          context: .
+          context: ./kol2022-g2-updated
           push: true
           tags: marce35/kiii-final-project:latest
 
