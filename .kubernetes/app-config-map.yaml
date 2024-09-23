@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-config
+  namespace: kiii-namespace
+data:
+  SPRING_DATASOURCE_DB: "KIII-project-db"
